@@ -1,8 +1,9 @@
-// Variables
+// Variables declaradas.
 const participantes = [];
 let asignaciones = {};
 
-// Agregar participante
+// Agrega participantes a la lista si no existen ya, 
+// devuelve true si se agregó, false si ya existía.
 function agregarParticipante(nombre) {
     if (!nombre) return false;
     if (!participantes.includes(nombre)) {
@@ -12,7 +13,8 @@ function agregarParticipante(nombre) {
     return false;
 }
 
-// Actualizar lista en la interfaz de usuario
+// Actualiza lista en la interfaz de usuario, 
+// si existe el elemento HTML correspondiente.
 function actualizarListas() {
     const ulParticipantes = document.getElementById('listaParticipantes');
     if (!ulParticipantes) return;
@@ -24,7 +26,8 @@ function actualizarListas() {
     });
 }
 
-// Mostrar resultado en la interfaz de usuario
+// Muestra resultado en la interfaz de usuario, 
+// si existe el elemento HTML correspondiente.
 function mostrarAsignaciones() {
     const ulResultado = document.getElementById('resultado');
     if (!ulResultado) return;
@@ -36,7 +39,7 @@ function mostrarAsignaciones() {
     }
 }
 
-// Interfaz de usuario: agregar participante
+// Interfaz de usuario: agregar participante, limpiar, sortear, reiniciar.
 function agregarParticipanteDesdeUI() {
     const input = document.getElementById('inputParticipante');
     if (!input) return;
@@ -53,7 +56,7 @@ function agregarParticipanteDesdeUI() {
     }
 }
 
-// Limpiar participantes y resultados
+// Limpiar participantes y resultados, si existe el elemento HTML correspondiente.
 function limpiarParticipantes() {
     participantes.length = 0;
     asignaciones = {};
@@ -62,7 +65,7 @@ function limpiarParticipantes() {
     if (ulResultado) ulResultado.innerHTML = '';
 }
 
-// Sorteo de amigo secreto
+// Sorteo de amigo secreto, asegurando que nadie se asigne a sí mismo.
 function sortearAmigosDesdeUI() {
     asignaciones = {};
     if (participantes.length < 2) {
@@ -87,7 +90,7 @@ function sortearAmigosDesdeUI() {
     mostrarAsignaciones();
 }
 
-// Fisher-Yates shuffle
+//shuffle, (para mezclar el array). 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -96,10 +99,11 @@ function shuffle(array) {
     return array;
 }
 
-// Reiniciar todo
+// Reinicia todo, limpiando participantes y resultados.
 function reiniciarTodo() {
     limpiarParticipantes();
 }
 
-// Al cargar la página, actualiza las listas
+// Al cargar la página, actualiza las listas.
 window.onload = actualizarListas;
+
